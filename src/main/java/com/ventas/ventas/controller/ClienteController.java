@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +42,15 @@ public class ClienteController {
 		return clienteService.findById(cliente.getIdCliente())
 				.map( clnt -> ResponseEntity.ok(clienteService.update(cliente)))
 				.orElseGet( ()-> ResponseEntity.notFound().build());
+	}
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Cliente> delete(@PathVariable("id") Integer idCliente){
+		return clienteService.findById(idCliente)
+				.map( clnt -> {
+					clienteService.delete(idCliente);
+					return ResponseEntity.ok(clnt);
+				})
+				.orElseGet( () -> ResponseEntity.notFound().build());
 	}
 	
 }

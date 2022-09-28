@@ -18,7 +18,7 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idCliente;
-	@NotNull
+	@NotNull(message = "El nombre es un campo obligatorio")
 	@NotBlank(message = "El nombre es obligatorio")
 	@Size(min = 3, max=70, message = "El nombre debe ser mayor a tres caracteres")
 	@Column(name="nombre", nullable = false, length = 70)

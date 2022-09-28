@@ -1,11 +1,25 @@
 package com.ventas.ventas.exception;
 
 import java.util.Date;
+import java.util.Map;
 
 public class ExceptionResponse {
 	private Date timestamp;
 	private String mensaje;
 	private String detalles;
+	private Map<String, String> erroresValidacion;
+	
+	public ExceptionResponse(){
+		
+	}
+	
+	public ExceptionResponse(Date timestamp, String mensaje, String detalles, Map<String, String> erroresValidacion) {
+		super();
+		this.timestamp = timestamp;
+		this.mensaje = mensaje;
+		this.detalles = detalles;
+		this.erroresValidacion = erroresValidacion;
+	}
 	
 	public ExceptionResponse(Date timestamp, String mensaje, String detalles) {
 		super();

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Map;
 
 public class ExceptionResponse {
+	
 	private Date timestamp;
 	private String mensaje;
 	private String detalles;

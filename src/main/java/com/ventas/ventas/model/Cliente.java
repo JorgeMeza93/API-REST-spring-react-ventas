@@ -34,13 +34,13 @@ public class Cliente {
 	private String razonSocial;
 	@OneToOne
 	@JoinColumn(name = "id_persona", nullable = false)
-	private Persona idPersona;
+	private Persona persona;
 	
 	public Persona getIdPersona() {
-		return idPersona;
+		return persona;
 	}
-	public void setIdPersona(Persona idPersona) {
-		this.idPersona = idPersona;
+	public void setIdPersona(Persona persona) {
+		this.persona = persona;
 	}
 	public Integer getIdCliente() {
 		return idCliente;

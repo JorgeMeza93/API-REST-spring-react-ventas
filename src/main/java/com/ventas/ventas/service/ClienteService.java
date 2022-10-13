@@ -10,7 +10,7 @@ import com.ventas.ventas.model.Cliente;
 import com.ventas.ventas.repository.IClienteRepository;
 
 @Service
-public class ClienteService implements IClienteService{
+public class ClienteService implements ICrudService<Cliente>{
 	@Autowired
 	private IClienteRepository clienteRepository;
 
@@ -38,5 +38,6 @@ public class ClienteService implements IClienteService{
 	public void delete(Integer id) {
 		clienteRepository.deleteById(id);
 	}
+
 
 }

@@ -16,43 +16,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ventas.ventas.model.Cliente;
+import com.ventas.ventas.model.Persona;
 import com.ventas.ventas.service.ICrudService;
 
 @RestController
-@RequestMapping("api/clientes")
-public class ClienteController {
-	
+@RequestMapping("/api/personas")
+public class PersonaController {
+
 	@Autowired
-	private ICrudService<Cliente> clienteService;
+	private ICrudService<Persona> personaService;
 	@GetMapping
-	public ResponseEntity<List<Cliente>> findAll(){
-		return ResponseEntity.ok(clienteService.findAll());
+	public ResponseEntity<List<Persona>> findAll(){
+		return ResponseEntity.ok(personaService.findAll());	  
+	}
+	@PostMapping
+	public ResponseEntity<Persona> create(@Valid @RequestBody Persona persona){
+		return new ResponseEntity<>(personaService.create(persona), HttpStatus.CREATED);
 	}
 	@GetMapping("/{id}")
-	public ResponseEntity<Cliente> findById(@PathVariable("id") Integer idCliente){
-		return clienteService.findById(idCliente)
+	public ResponseEntity<Persona> findById(@PathVariable("id") Integer idPersona){
+		return personaService.findById(idPersona)
 				.map(ResponseEntity::ok)
 				.orElseGet( () -> ResponseEntity.notFound().build());
 	}
-	@PostMapping
-	public ResponseEntity<Cliente> create(@Valid @RequestBody Cliente cliente){
-		return new ResponseEntity<>(clienteService.create(cliente), HttpStatus.CREATED);
-	}
 	@PutMapping
-	public ResponseEntity<Cliente> update(@Valid @RequestBody Cliente cliente){
-		return clienteService.findById(cliente.getIdCliente())
-				.map( clnt -> ResponseEntity.ok(clienteService.update(cliente)))
-				.orElseGet( ()-> ResponseEntity.notFound().build());
+	public ResponseEntity<Persona> update(@Valid @RequestBody Persona persona){
+		return personaService.findById(persona.getIdPersona())
+				.map( person -> ResponseEntity.ok(personaService.update(persona)))
+				.orElseGet( () -> ResponseEntity.notFound().build());
 	}
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Cliente> delete(@PathVariable("id") Integer idCliente){
-		return clienteService.findById(idCliente)
-				.map( clnt -> {
-					clienteService.delete(idCliente);
-					return ResponseEntity.ok(clnt);
+	public ResponseEntity<Object> delete(@PathVariable("id") Integer idPersona){
+		return personaService.findById(idPersona)
+				.map( person -> {
+					personaService.delete(idPersona);
+					return ResponseEntity.ok().build();
 				})
 				.orElseGet( () -> ResponseEntity.notFound().build());
 	}
+	
 	
 }

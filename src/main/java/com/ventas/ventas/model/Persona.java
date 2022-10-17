@@ -31,7 +31,13 @@ public class Persona {
 	@Size(min = 10, message = "El teléfono debe tener al menos 10 digitos")
 	@Column(name="telefono", nullable = true, length = 12)
 	private String telefono;
-	
+	 
+	public Integer getIdPersona() {
+		return idPersona;
+	}
+	public void setIdPersona(Integer idPersona) {
+		this.idPersona = idPersona;
+	}
 	public String getNombre() {
 		return nombre;
 	}

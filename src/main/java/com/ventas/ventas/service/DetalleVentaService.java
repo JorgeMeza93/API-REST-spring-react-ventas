@@ -27,20 +27,18 @@ public class DetalleVentaService implements ICrudService<DetalleVenta>{
 
 	@Override
 	public DetalleVenta create(DetalleVenta modelo) {
-		// TODO Auto-generated method stub
-		return null;
+		return detalleVenta.save(modelo);
 	}
 
 	@Override
 	public DetalleVenta update(DetalleVenta modelo) {
-		// TODO Auto-generated method stub
-		return null;
+		return detalleVenta.save(modelo);
+
 	}
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
+		detalleVenta.deleteById(id);
 	}
 
 }
